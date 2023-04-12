@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftLibdogecoin",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v13)
     ],
     products: [
         .library(
@@ -15,10 +15,21 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(
+            name: "Libdogecoin",
+            dependencies: [],
+            linkerSettings: [
+//                .linkedLibrary("libdogecoin"),
+//                .unsafeFlags(["-Xlinker -LSources/Libdogecoin/lib"]),
+//                .unsafeFlags(["-L./Sources/Libdogecoin/lib"]),
+            ]
+        ),
+        .target(
             name: "SwiftLibdogecoin",
-            dependencies: []),
-        .testTarget(
-            name: "SwiftLibdogecoinTests",
-            dependencies: ["SwiftLibdogecoin"]),
+            dependencies: [
+                "Libdogecoin",
+            ]),
+//        .testTarget(
+//            name: "SwiftLibdogecoinTests",
+//            dependencies: ["SwiftLibdogecoin"]),
     ]
 )
